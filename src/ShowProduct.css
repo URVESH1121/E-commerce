@@ -1,0 +1,52 @@
+.cutoff-text{
+    --max-lines : 2;
+    --line-height : 1.2;
+
+    max-height: calc(var(--max-lines) * var(--line-height) * 1em);
+    line-height: var(--line-height);
+    overflow: hidden;
+    position: relative;
+
+}
+.cutoff-text:has(+ .expand-btn:not(:checked))::before{
+    /* content: ""; */
+    position: absolute;
+    height: calc(var(--line-height) * 1em);
+    width: 100%;
+    bottom: 0;
+    pointer-events: none;
+    
+    /* background: linear-gradient(to bottom, transparent, white ); */
+}
+
+
+.expand-btn{
+    appearance: none;
+    /* border: 1px solid #ccc; */
+    /* padding: 0.5em;     */
+    /* border-radius: .25em; */
+    cursor: pointer;
+    /* margin-top: 1rem; */
+    color: #991b1b;
+}
+
+/* .expand-btn:hover{
+    background: #ccc;
+    color: #7f1d1d;
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+} */
+
+.expand-btn::before{
+    content: "Show More";
+    text-decoration: underline;
+    /* text-underline-offset: 0.2em; */
+}
+.expand-btn:checked:before{
+    content: "Show Less";
+    text-decoration: underline;
+}
+
+.cutoff-text:has(+ .expand-btn:checked){
+    max-height: none;
+}
